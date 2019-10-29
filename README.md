@@ -1,7 +1,7 @@
 ## 前言
 在日常业务开发中，我们免不了每天要和SQL语句接触，虽然现在的ORM框架已经为我们省去了很多工作，封装了一套CRUD供我们使用，在垂直业务中，我们基本不再需要写SQL语句，但是很多业务之间是关联性比较强的，我们还是需要自己写SQL语句，同时，有很多地方，一些条件出现了很多次。
 
-```
+``` java
 SELECT * FROM table order by id desc limi 0, 10
 ```
 
@@ -31,7 +31,7 @@ SELECT * FROM player ORDER BY height LIMIT 0, 10
 
 **service层**
 
-```
+``` java
   public List<Player> getList(Map<String,Object> params) {
         return playerMapper.getList(params);
     }
@@ -39,7 +39,7 @@ SELECT * FROM player ORDER BY height LIMIT 0, 10
 ```
 **mapper层**
 
-```
+``` java
 
     @Select("SELECT * FROM player ")
     List<Player> getList(Map params);
@@ -48,8 +48,8 @@ SELECT * FROM player ORDER BY height LIMIT 0, 10
 这时候有人发现，你SQL语句中后面的部分呢？排序条件，分页条件在哪里?
 
 我们再回到service层，加上我们的注解
-
-```
+ 
+``` java
     @OrderBy(orderColumn = "height")
     @Limit()
     @Override
@@ -64,7 +64,7 @@ SELECT * FROM player ORDER BY height LIMIT 0, 10
 贴一下，排序和分页的注解代码。
 **@OrderBy**
 
-```
+``` java
 /**
  * 自定义排序注解
  */
@@ -96,7 +96,7 @@ public @interface OrderBy {
 ```
 **@Limit**
 
-```
+``` java
 /**
  * 自定义分页注解
  */
@@ -130,7 +130,7 @@ public @interface Limit {
 
 **OrderBy切面类**
 
-```
+``` java
 @Component
 @Aspect
 @Order(1)
@@ -160,13 +160,13 @@ public class OrderByAspect extends BaseAspectAbstract {
 - 切面类中的@Order(1)注解为优先级，数字越小越先执行，所以这也是OrderBy在Limit前面的原因。在OrderBy切面类中，我们生成了对应的排序语句，
 
 
-```
+``` java
 ORDER BY XX DESC
 ```
 
 **Limit切面类**
 
-```
+``` java
 @Component
 @Aspect
 @Order(2)
@@ -193,7 +193,7 @@ public class LimitAspect extends BaseAspectAbstract {
 ```
 最后将生成对应的分页语句 
 
-```
+``` java
 LIMIT 0, 10
 ```
 
@@ -201,7 +201,7 @@ LIMIT 0, 10
 ---
 我们可以看到，两个切面类都继承了**BaseAspectAbstract**这个抽象类
 
-```
+``` java
 public abstract class BaseAspectAbstract {
 
     private static TreeMap<Integer,SQLLanguage> CONTAINERS = new TreeMap<>();
@@ -234,7 +234,7 @@ public abstract class BaseAspectAbstract {
 看一下刚才说到的枚举类
 
 
-```
+``` java
 public enum SQLEnums {
 
     /**
