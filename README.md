@@ -281,47 +281,4 @@ public enum SQLEnums {
 ```
 
 
-|____src
-| |____test
-| | |____java
-| | | |____com
-| | | | |____mybatis
-| | | | | |____interceptor
-| | | | | | |____MybatisInterceptorApplicationTests.java
-| |____main
-| | |____resources
-| | | |____static
-| | | |____templates
-| | | |____application.yml
-| | |____java
-| | | |____com
-| | | | |____mybatis
-| | | | | |____interceptor
-| | | | | | |____MybatisInterceptorApplication.java
-| | | | | | |____entity
-| | | | | | | |____Player.java
-| | | | | | |____enums
-| | | | | | | |____SQLEnums.java
-| | | | | | |____mapper
-| | | | | | | |____PlayerMapper.java
-| | | | | | |____annotation
-| | | | | | | |____OrderBy.java
-| | | | | | | |____Limit.java
-| | | | | | | |____GroupBy.java
-| | | | | | |____controller
-| | | | | | | |____PlayController.java
-| | | | | | |____abstracts
-| | | | | | | |____BaseAspectAbstract.java
-| | | | | | |____filterinterceptor
-| | | | | | | |____SQLLanguage.java
-| | | | | | | |____DataFilterInterceptor.java
-| | | | | | |____aspect
-| | | | | | | |____OrderByAspect.java
-| | | | | | | |____GroupByAspect.java
-| | | | | | | |____LimitAspect.java
-| | | | | | |____service
-| | | | | | | |____impl
-| | | | | | | | |____PlayerServiceImpl.java
-| | | | | | | |____PlayerService.java
-|____sql
-| |____nba.sql
+
