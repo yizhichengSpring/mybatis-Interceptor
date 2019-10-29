@@ -23,7 +23,7 @@ SELECT * FROM table order by id desc limi 0, 10
 
 这时候，我们来了一个业务，我们需要查询球员表中，身高最高的前十名。好，我们先写一下这条SQL语句
 
-```
+``` java
 SELECT * FROM player ORDER BY height LIMIT 0, 10
 ```
 
