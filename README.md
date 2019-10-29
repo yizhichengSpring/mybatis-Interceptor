@@ -150,7 +150,7 @@ public class OrderByAspect extends BaseAspectAbstract {
         //获得对应注解
         OrderBy orderBy = methodSignature.getMethod().getAnnotation(OrderBy.class);
         if (!StringUtils.isEmpty(orderBy)) {
-            String sort = orderBy.isAsc() ? " asc ":" desc" ;
+            String sort = orderBy.isAsc() ? " asc ":" desc " ;
             orderByBuilder.append(orderBy.orderColumn()).append(sort);
             putSQL(point,ORDERBY,new SQLLanguage(orderByBuilder.toString()));
         }
