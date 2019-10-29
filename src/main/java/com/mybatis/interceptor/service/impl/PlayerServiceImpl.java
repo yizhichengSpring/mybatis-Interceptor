@@ -23,8 +23,7 @@ public class PlayerServiceImpl implements PlayerService {
     private PlayerMapper playerMapper;
 
 
-    @GroupBy(column = "player_id")
-    @OrderBy(orderColumn = "player_id")
+    @OrderBy(orderColumn = "height")
     @Limit()
     @Override
     public List<Player> getList(Map<String,Object> params) {

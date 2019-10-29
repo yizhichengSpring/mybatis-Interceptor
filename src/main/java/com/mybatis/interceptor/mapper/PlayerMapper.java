@@ -15,6 +15,6 @@ import java.util.Map;
 public interface PlayerMapper extends BaseMapper<Player> {
 
 
-    @Select("SELECT player_id FROM player ")
+    @Select("SELECT * FROM player ")
     List<Player> getList(Map params);
 }
